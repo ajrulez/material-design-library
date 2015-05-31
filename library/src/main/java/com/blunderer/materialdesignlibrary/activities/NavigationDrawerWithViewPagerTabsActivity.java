@@ -4,14 +4,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.blunderer.materialdesignlibrary.R;
+import com.blunderer.materialdesignlibrary.adapters.NavigationDrawerAdapter;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
 import com.blunderer.materialdesignlibrary.models.ViewPagerItem;
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +36,8 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs);
+
+        replaceTitleOnDrawerStateChange = false;
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
@@ -65,11 +73,9 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ToolbarSearch.SEARCH_REQUEST_CODE) {
             super.onActivityResult(requestCode, resultCode, data);
-        }
-        else if (mCurrentItem != null && mCurrentItem.getFragment() != null) {
+        } else if (mCurrentItem != null && mCurrentItem.getFragment() != null) {
             mCurrentItem.getFragment().onActivityResult(requestCode, resultCode, data);
-        }
-        else if (mViewPagerItems != null && mViewPagerItems.size() > 0 && mViewPager != null) {
+        } else if (mViewPagerItems != null && mViewPagerItems.size() > 0 && mViewPager != null) {
             int tabPosition = mViewPager.getCurrentItem();
             if (tabPosition >= 0 && tabPosition < mViewPagerItems.size()) {
                 mViewPagerItems.get(tabPosition).getFragment()
@@ -90,4 +96,31 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
     }
 
     protected abstract boolean expandTabs();
+
+    @Override
+    protected void defineListTop() {
+        mNavigationDrawerItemsTop = new ArrayList<>();
+        mListTopAdapter = new NavigationDrawerAdapter(this,
+                R.layout.mdl_navigation_drawer_row, mNavigationDrawerItemsTop);
+        mTopListView = (ListView) findViewById(R.id.left_drawer_listview);
+        mTopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Change the View in ViewPager to current Position
+                try {
+                    if (mViewPager != null) {
+                        mViewPager.setCurrentItem(i-1, true);
+                    }
+                } catch (Exception e) {
+                    Log.w("NDVPTabsActivity", "Exception when switching view. Message = " + e.getMessage());
+                }
+                // Close the Navigation Drawer
+                finally {
+                    closeNavigationDrawer();
+                }
+            }
+        });
+
+        showAccountsLayout();
+    }
 }

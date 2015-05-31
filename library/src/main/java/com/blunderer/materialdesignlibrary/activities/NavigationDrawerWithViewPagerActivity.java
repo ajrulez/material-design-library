@@ -3,15 +3,20 @@ package com.blunderer.materialdesignlibrary.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.blunderer.materialdesignlibrary.R;
+import com.blunderer.materialdesignlibrary.adapters.NavigationDrawerAdapter;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
 import com.blunderer.materialdesignlibrary.models.ViewPagerItem;
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +68,8 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.mdl_activity_navigation_drawer_view_pager);
+
+        replaceTitleOnDrawerStateChange = false;
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
@@ -116,4 +123,31 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
     public abstract boolean showViewPagerIndicator();
 
     public abstract boolean replaceActionBarTitleByViewPagerPageTitle();
+
+    @Override
+    protected void defineListTop() {
+        mNavigationDrawerItemsTop = new ArrayList<>();
+        mListTopAdapter = new NavigationDrawerAdapter(this,
+                R.layout.mdl_navigation_drawer_row, mNavigationDrawerItemsTop);
+        mTopListView = (ListView) findViewById(R.id.left_drawer_listview);
+        mTopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Change the View in ViewPager to current Position
+                try {
+                    if (mViewPager != null) {
+                        mViewPager.setCurrentItem(i-1, true);
+                    }
+                } catch (Exception e) {
+                    Log.w("NDVPTabsActivity", "Exception when switching view. Message = " + e.getMessage());
+                }
+                // Close the Navigation Drawer
+                finally {
+                    closeNavigationDrawer();
+                }
+            }
+        });
+
+        showAccountsLayout();
+    }
 }

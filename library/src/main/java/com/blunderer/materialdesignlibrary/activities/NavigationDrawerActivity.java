@@ -56,6 +56,8 @@ public abstract class NavigationDrawerActivity extends AActivity
     protected NavigationDrawerAccountsHandler mNavigationDrawerAccountsHandler;
     protected int[] mAccountsPositions;
 
+    protected boolean replaceTitleOnDrawerStateChange = true;
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -398,7 +400,8 @@ public abstract class NavigationDrawerActivity extends AActivity
             ViewPagerFragment viewPagerFragment = (ViewPagerFragment) itemFragment.getFragment();
             if (viewPagerFragment.replaceActionBarTitleByViewPagerPageTitle()) {
                 CharSequence title = viewPagerFragment.getTitle();
-                if (title != null) {
+                if (title != null &&
+                        replaceTitleOnDrawerStateChange) {
                     replaceTitle(title);
                     return;
                 }
@@ -408,7 +411,8 @@ public abstract class NavigationDrawerActivity extends AActivity
     }
 
     protected void replaceTitle(CharSequence title) {
-        if (replaceActionBarTitleByNavigationDrawerItemTitle()) {
+        if (replaceActionBarTitleByNavigationDrawerItemTitle() &&
+                replaceTitleOnDrawerStateChange) {
             getSupportActionBar().setTitle(title);
         }
     }
