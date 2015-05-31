@@ -70,6 +70,12 @@ Or if you want the Light Theme:
   * **ViewPagerWithTabsActivity**  
   Your Activity will contain a ViewPager with tabs (expanded or not).
 
+  * **NavigationDrawerWithViewPagerActivity**  
+  Your Activity will contain both a NavigationDrawer and a ViewPager ((without Accounts only at this time).
+
+  * **NavigationDrawerWithViewPagerTabsActivity**  
+  Your Activity will contain both a NavigationDrawer and a ViewPager with Tabs ((without Accounts only at this time).
+
 ##### Example:  
 ```java
 import com.blunderer.materialdesignlibrary.activities.NavigationDrawerActivity;
@@ -180,3 +186,4 @@ public class MyActivity extends NavigationDrawerActivity {
 ### Developed by
 
  * Denis Mondon - <blundererandroid@gmail.com>
+ * NavigationDrawerWithViewPagerActivity and NavigationDrawerWithViewPagerTabsActivity - Anuj Saluja - <alifesoftware@gmail.com>
