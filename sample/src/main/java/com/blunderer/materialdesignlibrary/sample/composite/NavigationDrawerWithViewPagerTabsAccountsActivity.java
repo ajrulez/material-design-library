@@ -24,7 +24,7 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
     @Override
     public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
         return new NavigationDrawerAccountsHandler(this)
-                .enableSmallAccountsLayout()
+                .enableSmallAccountsLayout() // Comment this if you want bigger Account area
                 .addAccount("Blunderer", "blundererandroid@gmail.com",
                         R.drawable.profile1, R.drawable.profile1_background)
                 .addAccount("Blunderer's cat", "cat@gmail.com",
