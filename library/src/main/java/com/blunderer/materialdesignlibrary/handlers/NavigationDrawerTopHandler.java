@@ -149,6 +149,21 @@ public class NavigationDrawerTopHandler {
         return this;
     }
 
+    public NavigationDrawerTopHandler addItem(String title, Drawable icon) {
+        NavigationDrawerListItemTopIntent item = new NavigationDrawerListItemTopIntent();
+        item.setTitle(title);
+        item.setIcon(icon);
+        mItems.add(item);
+        return this;
+    }
+
+    public NavigationDrawerTopHandler addItem(String title) {
+        NavigationDrawerListItemTopIntent item = new NavigationDrawerListItemTopIntent();
+        item.setTitle(title);
+        mItems.add(item);
+        return this;
+    }
+
     public List<ListItem> getNavigationDrawerTopItems() {
         return mItems;
     }

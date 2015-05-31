@@ -38,13 +38,18 @@ public class NavigationDrawerWithViewPagerActivity
 
     @Override
     public NavigationDrawerTopHandler getNavigationDrawerTopHandler() {
+        // Note: The order of adding Navigation items to ViewPagerHandler
+        // should be the same as adding those to NavigationDrawer because we
+        // use index of item that is clicked in NavigationDrawer to navigate
+        // to corresponding View in ViewPager.
         return new NavigationDrawerTopHandler(this)
                 .addSection(R.string.navigation)
-                .addItem(R.string.portfolio, new MainFragment())
-                .addItem(R.string.watchlist, new MainFragment())
-                .addItem(R.string.findstocks, new MainFragment())
-                .addItem(R.string.topmovers, new MainFragment())
-                .addItem(R.string.myaccount, new MainFragment())
+                .addItem(getResources().getString(R.string.portfolio))
+                .addItem(getResources().getString(R.string.watchlist))
+                .addItem(getResources().getString(R.string.findstocks))
+                .addItem(getResources().getString(R.string.topmovers))
+                .addItem(getResources().getString(R.string.myaccount))
+
                 .addSection(R.string.activity)
                 .addItem(R.string.start_activity, R.mipmap.ic_github,
                         new Intent(getApplicationContext(), ViewPagerActivity.class));
@@ -74,6 +79,10 @@ public class NavigationDrawerWithViewPagerActivity
 
     @Override
     public ViewPagerHandler getViewPagerHandler() {
+        // Note: The order of adding Navigation items to ViewPagerHandler
+        // should be the same as adding those to NavigationDrawer because we
+        // use index of item that is clicked in NavigationDrawer to navigate
+        // to corresponding View in ViewPager.
         return new ViewPagerHandler(this)
                 .addPage(R.string.portfolio,
                         MainFragment.newInstance(getResources().getString(R.string.portfolio)))
