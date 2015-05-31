@@ -71,10 +71,10 @@ Or if you want the Light Theme:
   Your Activity will contain a ViewPager with tabs (expanded or not).
 
   * **NavigationDrawerWithViewPagerActivity**  
-  Your Activity will contain both a NavigationDrawer and a ViewPager ((without Accounts only at this time).
+  Your Activity will contain both a NavigationDrawer and a ViewPager (with or without Accounts).
 
   * **NavigationDrawerWithViewPagerTabsActivity**  
-  Your Activity will contain both a NavigationDrawer and a ViewPager with Tabs ((without Accounts only at this time).
+  Your Activity will contain both a NavigationDrawer and a ViewPager with Tabs (with or without Accounts).
 
 ##### Example:  
 ```java
