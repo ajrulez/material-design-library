@@ -36,6 +36,7 @@ import com.blunderer.materialdesignlibrary.views.NavigationDrawerAccountsLayoutS
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class NavigationDrawerActivity extends AActivity
@@ -57,6 +58,7 @@ public abstract class NavigationDrawerActivity extends AActivity
     protected int[] mAccountsPositions;
 
     protected boolean replaceTitleOnDrawerStateChange = true;
+    protected HashMap<String, Integer> navigationDrawerViewPagerMap = new HashMap<> ();
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -422,4 +424,26 @@ public abstract class NavigationDrawerActivity extends AActivity
                 mNavigationDrawerAccountsHandler.getNavigationDrawerAccounts().size() <= 0;
     }
 
+    /**
+     * Method to add the index for items in NavigationDrawer
+     * to relate them to the items in ViewPager for proper
+     * Navigation
+     *
+     * @param itemTitleInNavigationDrawer
+     * @param itemPositionInViewPager
+     */
+    public void addNavigationViewPagerMapping(String itemTitleInNavigationDrawer, int itemPositionInViewPager) {
+        navigationDrawerViewPagerMap.put(itemTitleInNavigationDrawer, itemPositionInViewPager);
+    }
+
+    protected int getViewPagerItemPositionForNavigationDrawerItemTitle(String itemTitleInNavigationDrawer) {
+        if(navigationDrawerViewPagerMap.containsKey(itemTitleInNavigationDrawer)) {
+            // Protocol - The consumer of the library should add the the
+            // items as 1-based index (because that is more natural) instead
+            // of 0-based index
+            return navigationDrawerViewPagerMap.get(itemTitleInNavigationDrawer) - 1;
+        }
+
+        return -1;
+    }
 }

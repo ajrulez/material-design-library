@@ -14,6 +14,7 @@ import com.blunderer.materialdesignlibrary.R;
 import com.blunderer.materialdesignlibrary.adapters.NavigationDrawerAdapter;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
+import com.blunderer.materialdesignlibrary.models.ListItem;
 import com.blunderer.materialdesignlibrary.models.ViewPagerItem;
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 
@@ -106,12 +107,22 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
         mTopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ListItem item = (ListItem) adapterView.getAdapter().getItem(i);
+
                 // Change the View in ViewPager to current Position
                 try {
-                    if (mViewPager != null) {
-                        mViewPager.setCurrentItem(i-1, true);
+                    String itemTitle = item.getTitle();
+
+                    // Get the ViewPager Item corresponding to the NavigationDrawer
+                    // Item based on the Title of Navigation Item
+                    int viewPosition = getViewPagerItemPositionForNavigationDrawerItemTitle(itemTitle);
+
+                    if (mViewPager != null &&
+                            viewPosition != -1) {
+                        mViewPager.setCurrentItem(viewPosition, true);
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     Log.w("NDVPTabsActivity", "Exception when switching view. Message = " + e.getMessage());
                 }
                 // Close the Navigation Drawer

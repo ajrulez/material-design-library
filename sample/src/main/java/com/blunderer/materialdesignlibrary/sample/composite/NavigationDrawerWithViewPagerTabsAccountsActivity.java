@@ -64,6 +64,14 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
         // should be the same as adding those to NavigationDrawer because we
         // use index of item that is clicked in NavigationDrawer to navigate
         // to corresponding View in ViewPager.
+
+        // Prepare the NavigationDrawer to ViewPager item map
+        addNavigationViewPagerMapping(getResources().getString(R.string.portfolio), 1);
+        addNavigationViewPagerMapping(getResources().getString(R.string.watchlist), 2);
+        addNavigationViewPagerMapping(getResources().getString(R.string.findstocks), 3);
+        addNavigationViewPagerMapping(getResources().getString(R.string.topmovers), 4);
+        addNavigationViewPagerMapping(getResources().getString(R.string.myaccount), 5);
+
         return new NavigationDrawerTopHandler(this)
                 .addSection(R.string.navigation)
                 .addItem(getResources().getString(R.string.portfolio))
