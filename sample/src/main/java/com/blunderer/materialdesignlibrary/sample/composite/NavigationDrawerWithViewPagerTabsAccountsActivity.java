@@ -1,6 +1,7 @@
 package com.blunderer.materialdesignlibrary.sample.composite;
 
 import android.content.Intent;
+import android.view.View;
 
 import com.blunderer.materialdesignlibrary.handlers.ActionBarDefaultHandler;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarHandler;
@@ -15,22 +16,42 @@ import com.blunderer.materialdesignlibrary.sample.R;
 import com.blunderer.materialdesignlibrary.sample.viewpagers.ViewPagerActivity;
 
 /**
- * Modifications by anujsaluja on 5/30/15.
- *
- * Original Source Code Credit: Denis Mondon
- * GitHub: https://github.com/DenisMondon/material-design-library
+ * Created by anujsaluja on 5/31/15.
  */
-public class NavigationDrawerWithViewPagerActivity
-        extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerActivity {
+public class NavigationDrawerWithViewPagerTabsAccountsActivity
+        extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerTabsActivity {
 
     @Override
     public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
-        return null;
+        return new NavigationDrawerAccountsHandler(this)
+                .enableSmallAccountsLayout()
+                .addAccount("Blunderer", "blundererandroid@gmail.com",
+                        R.drawable.profile1, R.drawable.profile1_background)
+                .addAccount("Blunderer's cat", "cat@gmail.com",
+                        R.drawable.profile2, R.drawable.profile2_background)
+                .addAccount("Blunderer's dog", "dog@gmail.com",
+                        R.drawable.profile3, R.color.cyan)
+                .addAccount("Blunderer's monkey", "monkey@gmail.com",
+                        R.drawable.profile4, R.color.gray);
     }
 
     @Override
     public NavigationDrawerAccountsMenuHandler getNavigationDrawerAccountsMenuHandler() {
-        return null;
+        return new NavigationDrawerAccountsMenuHandler(this)
+                .addAddAccount(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                    }
+
+                })
+                .addManageAccounts(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                    }
+
+                });
     }
 
     @Override
@@ -98,23 +119,17 @@ public class NavigationDrawerWithViewPagerActivity
     }
 
     @Override
-    public int defaultViewPagerPageSelectedPosition() {
-        return 0;
-    }
-
-    @Override
-    public boolean showViewPagerIndicator() {
+    public boolean expandTabs() {
         return false;
     }
 
     @Override
-    public boolean replaceActionBarTitleByViewPagerPageTitle() {
-        return true;
+    public int defaultViewPagerPageSelectedPosition() {
+        return 0;
     }
 
     @Override
     protected ActionBarHandler getActionBarHandler() {
         return new ActionBarDefaultHandler(this);
     }
-
 }
