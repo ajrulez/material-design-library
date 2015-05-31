@@ -20,6 +20,8 @@ import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDr
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithAccountsActivity;
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithAccountsAndFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithFullHeightActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsActivity;
 import com.blunderer.materialdesignlibrary.sample.scrollviews.ScrollViewActivity;
 import com.blunderer.materialdesignlibrary.sample.scrollviews.ScrollViewWithRefreshActivity;
 import com.blunderer.materialdesignlibrary.sample.searchbar.SearchBarActivity;
@@ -120,6 +122,18 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         navigationDrawerFeature4.setTitle("With Accounts & Full Height");
         navigationDrawerFeature4.setDescription("A NavigationDrawer with accounts that overlays the ActionBar");
 
+        MainActivityFeature compositeActivitiesHeader = new MainActivityFeature();
+        compositeActivitiesHeader.setHeader(true);
+        compositeActivitiesHeader.setTitle("Composite Activities");
+        MainActivityFeature compositeViewFeature1 = new MainActivityFeature();
+        compositeViewFeature1.setActivity(NavigationDrawerWithViewPagerActivity.class);
+        compositeViewFeature1.setTitle("Navigation Drawer With View Pager");
+        compositeViewFeature1.setDescription("A Combination of NavigationDrawer and ViewPager");
+        MainActivityFeature compositeViewFeature2 = new MainActivityFeature();
+        compositeViewFeature2.setActivity(NavigationDrawerWithViewPagerTabsActivity.class);
+        compositeViewFeature2.setTitle("Navigation Drawer With View Pager With Tabs");
+        compositeViewFeature2.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs");
+
         MainActivityFeature listViewHeader = new MainActivityFeature();
         listViewHeader.setHeader(true);
         listViewHeader.setTitle("ListView");
@@ -205,15 +219,18 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         objects.add(navigationDrawerFeature2);
         objects.add(navigationDrawerFeature3);
         objects.add(navigationDrawerFeature4);
-        objects.add(listViewHeader);
-        objects.add(listViewFeature1);
-        objects.add(listViewFeature2);
-        objects.add(listViewFeature3);
         objects.add(viewPagerHeader);
         objects.add(viewPagerFeature1);
         objects.add(viewPagerFeature2);
         objects.add(viewPagerFeature3);
         objects.add(viewPagerFeature4);
+        objects.add(compositeActivitiesHeader);
+        objects.add(compositeViewFeature1);
+        objects.add(compositeViewFeature2);
+        objects.add(listViewHeader);
+        objects.add(listViewFeature1);
+        objects.add(listViewFeature2);
+        objects.add(listViewFeature3);
         objects.add(scrollViewHeader);
         objects.add(scrollViewFeature1);
         objects.add(scrollViewFeature2);

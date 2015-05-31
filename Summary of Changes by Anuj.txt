@@ -1,0 +1,26 @@
+Summary of Changes:
+
+1. Added two new Activities to com.blunderer.materialdesignlibrary.activities
+	NavigationDrawerWithViewPagerActivity extends NavigationDrawerActivity and implements com.blunderer.materialdesignlibrary.interfaces.ViewPager
+	NavigationDrawerWithViewPagerTabsActivity extends NavigationDrawerActivity and implements com.blunderer.materialdesignlibrary.interfaces.ViewPager
+	
+	Basically extended NavigationDrawerActivity and added code from ViewPagerActivity
+	Basically extended NavigationDrawerActivity and added code from ViewPagerWithTabsActivity
+	
+2. Added two new Layout files
+	NavigationDrawerWithViewPagerActivity - mdl_activity_navigation_drawer_view_pager.xml
+	NavigationDrawerWithViewPagerTabsActivity - mdl_activity_navigation_drawer_with_view_pager_tabs.xml
+	
+3. Added a new package in sample - com.blunderer.materialdesignlibrary.sample.composite
+
+4. To the new package, added two classes
+	NavigationDrawerWithViewPagerActivity extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerActivity
+	NavigationDrawerWithViewPagerTabsActivity extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerTabsActivity
+	
+5. Modified the MainActivity, method getFeatures to add a new feature called Composite Activities and add the two new
+	activities from 4.
+	
+6. Added two new activities to Manifest
+    
+	
+	

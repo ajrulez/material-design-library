@@ -48,13 +48,13 @@ public abstract class NavigationDrawerActivity extends AActivity
     protected ListView mBottomListView;
     protected NavigationDrawerAdapter mListTopAdapter;
     protected NavigationDrawerBottomAdapter mListBottomAdapter;
-    private View mDrawerLeft;
-    private NavigationDrawerListItemTopFragment mCurrentItem;
-    private int mCurrentItemPosition = 0;
-    private List<ListItem> mNavigationDrawerItemsTop;
-    private List<NavigationDrawerListItemBottom> mNavigationDrawerItemsBottom;
-    private NavigationDrawerAccountsHandler mNavigationDrawerAccountsHandler;
-    private int[] mAccountsPositions;
+    protected View mDrawerLeft;
+    protected NavigationDrawerListItemTopFragment mCurrentItem;
+    protected int mCurrentItemPosition = 0;
+    protected List<ListItem> mNavigationDrawerItemsTop;
+    protected List<NavigationDrawerListItemBottom> mNavigationDrawerItemsBottom;
+    protected NavigationDrawerAccountsHandler mNavigationDrawerAccountsHandler;
+    protected int[] mAccountsPositions;
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -155,7 +155,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         }
     }
 
-    private void defineListTop() {
+    protected void defineListTop() {
         mNavigationDrawerItemsTop = new ArrayList<>();
         mListTopAdapter = new NavigationDrawerAdapter(this,
                 R.layout.mdl_navigation_drawer_row, mNavigationDrawerItemsTop);
@@ -171,7 +171,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         showAccountsLayout();
     }
 
-    private void defineListBottom() {
+    protected void defineListBottom() {
         mNavigationDrawerItemsBottom = new ArrayList<>();
         mListBottomAdapter = new NavigationDrawerBottomAdapter(
                 this,
@@ -193,7 +193,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         }
     }
 
-    private void defineDrawerLayout() {
+    protected void defineDrawerLayout() {
         mDrawerLeft = findViewById(R.id.left_drawer);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -221,7 +221,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void initFragment(Bundle savedInstanceState) {
+    protected void initFragment(Bundle savedInstanceState) {
         int fragmentPosition;
         boolean isSavedInstanceState = false;
         if (savedInstanceState != null) {
@@ -234,7 +234,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         selectDefaultItemPosition(fragmentPosition, isSavedInstanceState);
     }
 
-    private void replaceTopItems(NavigationDrawerTopHandler navigationDrawerTopHandler) {
+    protected void replaceTopItems(NavigationDrawerTopHandler navigationDrawerTopHandler) {
         mNavigationDrawerItemsTop.clear();
 
         if (navigationDrawerTopHandler != null &&
@@ -252,7 +252,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         mListTopAdapter.notifyDataSetChanged();
     }
 
-    private void replaceBottomItems(NavigationDrawerBottomHandler navigationDrawerBottomHandler) {
+    protected void replaceBottomItems(NavigationDrawerBottomHandler navigationDrawerBottomHandler) {
         mNavigationDrawerItemsBottom.clear();
 
         if (navigationDrawerBottomHandler != null &&
@@ -264,7 +264,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         mListBottomAdapter.notifyDataSetChanged();
     }
 
-    private void selectDefaultItemPosition(int fragmentPosition,
+    protected void selectDefaultItemPosition(int fragmentPosition,
                                            boolean isSavedInstanceState) {
         if (mNavigationDrawerItemsTop.size() <= 0) return;
 
@@ -323,7 +323,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         }
     }
 
-    private void onListItemTopClick(AdapterView<?> adapterView, View view, int i) {
+    protected void onListItemTopClick(AdapterView<?> adapterView, View view, int i) {
         ListItem item = (ListItem) adapterView.getAdapter().getItem(i);
 
         if (item instanceof NavigationDrawerListItemTopFragment) {
@@ -357,14 +357,14 @@ public abstract class NavigationDrawerActivity extends AActivity
         }
     }
 
-    private void onListItemBottomClick(AdapterView<?> adapterView, View view, int i) {
+    protected void onListItemBottomClick(AdapterView<?> adapterView, View view, int i) {
         View.OnClickListener onClickListener = ((NavigationDrawerListItemBottom)
                 adapterView.getAdapter().getItem(i)).getOnClickListener();
 
         if (onClickListener != null) onClickListener.onClick(view);
     }
 
-    private void showAccountsLayout() {
+    protected void showAccountsLayout() {
         mNavigationDrawerAccountsHandler = getNavigationDrawerAccountsHandler();
         if (!isNavigationDrawerAccountHandlerEmpty()) {
             if (mNavigationDrawerAccountsHandler.useSmallAccountsLayout()) {
@@ -393,7 +393,7 @@ public abstract class NavigationDrawerActivity extends AActivity
         mTopListView.setAdapter(mListTopAdapter);
     }
 
-    private void replaceTitle(NavigationDrawerListItemTopFragment itemFragment) {
+    protected void replaceTitle(NavigationDrawerListItemTopFragment itemFragment) {
         if (itemFragment.getFragment() instanceof ViewPagerFragment) {
             ViewPagerFragment viewPagerFragment = (ViewPagerFragment) itemFragment.getFragment();
             if (viewPagerFragment.replaceActionBarTitleByViewPagerPageTitle()) {
@@ -407,13 +407,13 @@ public abstract class NavigationDrawerActivity extends AActivity
         replaceTitle(itemFragment.getTitle());
     }
 
-    private void replaceTitle(CharSequence title) {
+    protected void replaceTitle(CharSequence title) {
         if (replaceActionBarTitleByNavigationDrawerItemTitle()) {
             getSupportActionBar().setTitle(title);
         }
     }
 
-    private boolean isNavigationDrawerAccountHandlerEmpty() {
+    protected boolean isNavigationDrawerAccountHandlerEmpty() {
         return mNavigationDrawerAccountsHandler == null ||
                 mNavigationDrawerAccountsHandler.getNavigationDrawerAccounts().size() <= 0;
     }
