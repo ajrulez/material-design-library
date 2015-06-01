@@ -52,7 +52,9 @@ public abstract class AActivity extends ActionBarActivity {
         mCustomToolbar.getToolbar()
                 .setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(mCustomToolbar.getToolbar());
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override
