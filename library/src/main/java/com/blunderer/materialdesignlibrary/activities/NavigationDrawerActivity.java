@@ -57,7 +57,8 @@ public abstract class NavigationDrawerActivity extends AActivity
     protected NavigationDrawerAccountsHandler mNavigationDrawerAccountsHandler;
     protected int[] mAccountsPositions;
 
-    protected boolean replaceTitleOnDrawerStateChange = true;
+    // Map to contain a mapping of String in NavigationDrawer list item
+    // to the View in ViewPager
     protected HashMap<String, Integer> navigationDrawerViewPagerMap = new HashMap<> ();
 
     @Override
@@ -329,7 +330,13 @@ public abstract class NavigationDrawerActivity extends AActivity
 
     protected void onListItemTopClick(AdapterView<?> adapterView, View view, int i) {
         ListItem item = (ListItem) adapterView.getAdapter().getItem(i);
+        handleListItemTopClick(view, item, i);
+    }
 
+    // NavigationDrawerWithViewPagerActivity and NavigationDrawerWithViewPagerTabsActivity
+    // extend this method to handle the list item click, because in some cases
+    // this click should result in ViewPager Navigation
+    protected void handleListItemTopClick(View view, ListItem item, int itemPos) {
         if (item instanceof NavigationDrawerListItemTopFragment) {
             NavigationDrawerListItemTopFragment itemFragment =
                     (NavigationDrawerListItemTopFragment) item;
@@ -338,7 +345,7 @@ public abstract class NavigationDrawerActivity extends AActivity
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment).commit();
                 mCurrentItem = itemFragment;
-                mCurrentItemPosition = i;
+                mCurrentItemPosition = itemPos;
             }
             mTopListView.setItemChecked(mCurrentItemPosition, true);
             replaceTitle(mCurrentItem);
@@ -357,7 +364,7 @@ public abstract class NavigationDrawerActivity extends AActivity
             OnMoreAccountClickListener onClickListener =
                     ((NavigationDrawerAccountsListItemAccount) item).getOnClickListener();
 
-            if (onClickListener != null) onClickListener.onMoreAccountClick(view, i);
+            if (onClickListener != null) onClickListener.onMoreAccountClick(view, itemPos);
         }
     }
 
@@ -402,8 +409,7 @@ public abstract class NavigationDrawerActivity extends AActivity
             ViewPagerFragment viewPagerFragment = (ViewPagerFragment) itemFragment.getFragment();
             if (viewPagerFragment.replaceActionBarTitleByViewPagerPageTitle()) {
                 CharSequence title = viewPagerFragment.getTitle();
-                if (title != null &&
-                        replaceTitleOnDrawerStateChange) {
+                if (title != null) {
                     replaceTitle(title);
                     return;
                 }
@@ -413,8 +419,7 @@ public abstract class NavigationDrawerActivity extends AActivity
     }
 
     protected void replaceTitle(CharSequence title) {
-        if (replaceActionBarTitleByNavigationDrawerItemTitle() &&
-                replaceTitleOnDrawerStateChange) {
+        if (replaceActionBarTitleByNavigationDrawerItemTitle()) {
             getSupportActionBar().setTitle(title);
         }
     }

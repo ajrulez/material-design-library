@@ -15,6 +15,7 @@ import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemBottom
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemHeader;
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemTopFragment;
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemTopIntent;
+import com.blunderer.materialdesignlibrary.models.NavigationDrawerViewPagerListItem;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
     @Override
     public boolean isEnabled(int position) {
         return getItem(position) instanceof NavigationDrawerListItemTopFragment ||
-                getItem(position) instanceof NavigationDrawerListItemTopIntent;
+                getItem(position) instanceof NavigationDrawerListItemTopIntent ||
+                getItem(position) instanceof NavigationDrawerViewPagerListItem;
     }
 
     @Override
@@ -59,7 +61,8 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
 
             if (item instanceof NavigationDrawerListItemTopFragment ||
                     item instanceof NavigationDrawerListItemTopIntent ||
-                    item instanceof NavigationDrawerListItemBottom) {
+                    item instanceof NavigationDrawerListItemBottom ||
+                    item instanceof NavigationDrawerViewPagerListItem) {
                 convertView.setBackgroundResource(R.drawable.navigation_drawer_selector);
             }
             holder = new ViewHolder();
@@ -116,6 +119,20 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
             holder.titleHeader.setVisibility(View.VISIBLE);
             holder.icon.setVisibility(View.GONE);
             holder.headerSeparator.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+        } else if (item instanceof NavigationDrawerViewPagerListItem) {
+            NavigationDrawerViewPagerListItem itemNormal =
+                    (NavigationDrawerViewPagerListItem) item;
+            holder.title.setVisibility(View.VISIBLE);
+            holder.titleHeader.setVisibility(View.GONE);
+            holder.headerSeparator.setVisibility(View.GONE);
+            if (itemNormal.useIconResource()) {
+                try {
+                    holder.icon.setImageDrawable(itemNormal.getIcon());
+                    holder.icon.setVisibility(View.VISIBLE);
+                } catch (Resources.NotFoundException e) {
+                    holder.icon.setVisibility(View.GONE);
+                }
+            }
         }
 
         return convertView;

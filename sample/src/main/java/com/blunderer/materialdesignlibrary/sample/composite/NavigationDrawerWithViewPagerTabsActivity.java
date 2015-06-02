@@ -70,7 +70,7 @@ public class NavigationDrawerWithViewPagerTabsActivity
 
     @Override
     public boolean replaceActionBarTitleByNavigationDrawerItemTitle() {
-        return true;
+        return false;
     }
 
     @Override

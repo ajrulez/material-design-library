@@ -12,7 +12,9 @@ import com.blunderer.materialdesignlibrary.R;
 import com.blunderer.materialdesignlibrary.adapters.NavigationDrawerAdapter;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
+import com.blunderer.materialdesignlibrary.interfaces.NavigationDrawer;
 import com.blunderer.materialdesignlibrary.models.ListItem;
+import com.blunderer.materialdesignlibrary.models.NavigationDrawerViewPagerListItem;
 import com.blunderer.materialdesignlibrary.models.ViewPagerItem;
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -70,8 +72,6 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.mdl_activity_navigation_drawer_view_pager);
 
-        replaceTitleOnDrawerStateChange = false;
-
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
         }
@@ -126,39 +126,34 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
     public abstract boolean replaceActionBarTitleByViewPagerPageTitle();
 
     @Override
-    protected void defineListTop() {
-        mNavigationDrawerItemsTop = new ArrayList<>();
-        mListTopAdapter = new NavigationDrawerAdapter(this,
-                R.layout.mdl_navigation_drawer_row, mNavigationDrawerItemsTop);
-        mTopListView = (ListView) findViewById(R.id.left_drawer_listview);
-        mTopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ListItem item = (ListItem) adapterView.getAdapter().getItem(i);
+    protected void handleListItemTopClick(View view, ListItem item, int itemPos) {
+        // If this item is of type NavigationDrawerViewPagerListItem, i.e.
+        // we have only added it to navigate to ViewPager using NavigationDrawer
+        // then do the navigation below. If not of this type,
+        // then call the super class to handle it appropriately
+        if(item instanceof NavigationDrawerViewPagerListItem) {
+            // Change the View in ViewPager to current Position
+            try {
+                String itemTitle = item.getTitle();
 
-                // Change the View in ViewPager to current Position
-                try {
-                    String itemTitle = item.getTitle();
+                // Get the ViewPager Item corresponding to the NavigationDrawer
+                // Item based on the Title of Navigation Item
+                int viewPosition = getViewPagerItemPositionForNavigationDrawerItemTitle(itemTitle);
 
-                    // Get the ViewPager Item corresponding to the NavigationDrawer
-                    // Item based on the Title of Navigation Item
-                    int viewPosition = getViewPagerItemPositionForNavigationDrawerItemTitle(itemTitle);
-
-                    if (mViewPager != null &&
-                            viewPosition != -1) {
-                        mViewPager.setCurrentItem(viewPosition, true);
-                    }
+                if (mViewPager != null &&
+                        viewPosition != -1) {
+                    mViewPager.setCurrentItem(viewPosition, true);
                 }
-                catch (Exception e) {
-                    Log.w("NDVPTabsActivity", "Exception when switching view. Message = " + e.getMessage());
-                }
-                // Close the Navigation Drawer
-                finally {
-                    closeNavigationDrawer();
-                }
+            } catch (Exception e) {
+                Log.w("NDVPTabsActivity", "Exception when switching view. Message = " + e.getMessage());
             }
-        });
-
-        showAccountsLayout();
+            // Close the Navigation Drawer
+            finally {
+                closeNavigationDrawer();
+            }
+        }
+        else{
+            super.handleListItemTopClick(view, item, itemPos);
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.blunderer.materialdesignlibrary.models.ListItem;
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemHeader;
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemTopFragment;
 import com.blunderer.materialdesignlibrary.models.NavigationDrawerListItemTopIntent;
+import com.blunderer.materialdesignlibrary.models.NavigationDrawerViewPagerListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,10 +159,23 @@ public class NavigationDrawerTopHandler {
     }
 
     public NavigationDrawerTopHandler addItem(String title) {
-        NavigationDrawerListItemTopIntent item = new NavigationDrawerListItemTopIntent();
+        NavigationDrawerViewPagerListItem item = new NavigationDrawerViewPagerListItem();
         item.setTitle(title);
         mItems.add(item);
         return this;
+    }
+
+    public NavigationDrawerTopHandler addItem(String title, Drawable icon, boolean isViewPagerItem) {
+        if(isViewPagerItem) {
+            return addItem(title, icon);
+        }
+        else {
+            NavigationDrawerViewPagerListItem item = new NavigationDrawerViewPagerListItem();
+            item.setTitle(title);
+            item.setIcon(icon);
+            mItems.add(item);
+            return this;
+        }
     }
 
     public List<ListItem> getNavigationDrawerTopItems() {
