@@ -37,7 +37,9 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs);
+        super.onCreate(savedInstanceState, overlayActionBar() ?
+                R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs_full
+                : R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs);
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
