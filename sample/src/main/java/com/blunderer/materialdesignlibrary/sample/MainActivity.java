@@ -14,8 +14,10 @@ import com.blunderer.materialdesignlibrary.sample.cardviews.CardViewNormalActivi
 import com.blunderer.materialdesignlibrary.sample.cardviews.CardViewWithLeftImageActivity;
 import com.blunderer.materialdesignlibrary.sample.cardviews.CardViewWithTopImageActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerAccountsActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerAccountsFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewWithCustomLayoutActivity;
@@ -153,7 +155,14 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         compositeViewFeature6.setActivity(NavigationDrawerWithViewPagerTabsFullHeightActivity.class);
         compositeViewFeature6.setTitle("Navigation Drawer With View Pager With Tabs Full Height");
         compositeViewFeature6.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs Full height");
-
+        MainActivityFeature compositeViewFeature7 = new MainActivityFeature();
+        compositeViewFeature7.setActivity(NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity.class);
+        compositeViewFeature7.setTitle("Navigation Drawer With View Pager With Tabs And Account Full Height");
+        compositeViewFeature7.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs and Account Full height");
+        MainActivityFeature compositeViewFeature8 = new MainActivityFeature();
+        compositeViewFeature8.setActivity(NavigationDrawerWithViewPagerAccountsFullHeightActivity.class);
+        compositeViewFeature8.setTitle("Navigation Drawer With View Pager With Account Full Height");
+        compositeViewFeature8.setDescription("A Combination of NavigationDrawer and ViewPager with Account Full height");
         MainActivityFeature listViewHeader = new MainActivityFeature();
         listViewHeader.setHeader(true);
         listViewHeader.setTitle("ListView");
@@ -251,6 +260,8 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         objects.add(compositeViewFeature4);
         objects.add(compositeViewFeature5);
         objects.add(compositeViewFeature6);
+        objects.add(compositeViewFeature7);
+        objects.add(compositeViewFeature8);
         objects.add(listViewHeader);
         objects.add(listViewFeature1);
         objects.add(listViewFeature2);
