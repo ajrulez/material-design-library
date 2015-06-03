@@ -70,7 +70,9 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.mdl_activity_navigation_drawer_view_pager);
+        super.onCreate(savedInstanceState, overlayActionBar() ?
+                R.layout.mdl_activity_navigation_drawer_view_pager_full
+                : R.layout.mdl_activity_navigation_drawer_view_pager);
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");

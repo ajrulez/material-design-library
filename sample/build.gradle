@@ -25,3 +25,20 @@ android {
 dependencies {
     compile project(':library')
 }
+
+task copyToLib(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.compile
+}
+
+task copyAllLibs << {
+    [ 'compile','runtime','testCompile' ].each { mode ->
+        copy {
+            from configurations.getByName(mode).files
+            into ext."${mode}Lib"
+        }
+    }
+}
+
+build.dependsOn(copyToLib)
+build.dependsOn(copyAllLibs)
