@@ -28,4 +28,6 @@
     <string name="findstocks">Find Stocks</string>
     <string name="topmovers">Top Movers</string>
     <string name="myaccount">My Account</string>
+    <string name="cramerspicks">Cramer\'s Picks</string>
+    <string name="insidertrades">Insider Trades</string>
 </resources>
