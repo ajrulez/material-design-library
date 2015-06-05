@@ -34,7 +34,7 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
     public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
         return new NavigationDrawerAccountsHandler(this)
                 .enableSmallAccountsLayout() // Comment this if you want bigger Account area
-                .addAccount("Blunderer", "blundererandroid@gmail.com",
+                .addAccount("Manage Account", "ajrulez@gmail.com",
                         R.drawable.profile1, R.drawable.profile1_background)
                 .addAccountOption("Export Portfolio",
                         "Exports Portfolio to HTML File",
@@ -42,11 +42,14 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
                 .addAccountOption("Export Watchlist",
                         "Exports Watchlist to HTML File",
                         accountOptionClickListener)
+                .addAccountOption("Add \\ Remove Countries",
+                        "Allows user to add or remove countries",
+                        accountOptionClickListener)
                 .addAccountOption("Reset Account",
                         "Resets and clears user account",
                         accountOptionClickListener)
-                .addAccountOption("Add \\ Remove Countries",
-                        "Allows user to add or remove countries",
+                .addAccountOption("Log Off",
+                        "Logs the user off",
                         accountOptionClickListener);
     }
 
@@ -95,8 +98,14 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
                 .addItem(getResources().getString(R.string.topmovers))
                 .addItem(getResources().getString(R.string.myaccount))
 
-                .addSection(R.string.activity)
-                .addItem(R.string.start_activity, R.mipmap.ic_github,
+                .addSection(R.string.licenseandinfo)
+                .addItem(R.string.privacypolicy, R.mipmap.ic_github,
+                        new Intent(getApplicationContext(), ViewPagerActivity.class))
+                .addItem(R.string.licence, R.mipmap.ic_github,
+                        new Intent(getApplicationContext(), ViewPagerActivity.class))
+                .addItem(R.string.disclaimer, R.mipmap.ic_github,
+                        new Intent(getApplicationContext(), ViewPagerActivity.class))
+                .addItem(R.string.aboutus, R.mipmap.ic_github,
                         new Intent(getApplicationContext(), ViewPagerActivity.class));
     }
 

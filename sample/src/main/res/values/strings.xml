@@ -30,4 +30,9 @@
     <string name="myaccount">My Account</string>
     <string name="cramerspicks">Cramer\'s Picks</string>
     <string name="insidertrades">Insider Trades</string>
+    <string name="licenseandinfo">License and Info</string>
+    <string name="privacypolicy">Privacy Policy</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="aboutus">About Us</string>
+    <string name="licence">End User License</string>
 </resources>
