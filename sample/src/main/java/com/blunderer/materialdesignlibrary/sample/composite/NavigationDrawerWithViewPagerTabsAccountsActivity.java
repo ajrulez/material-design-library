@@ -89,6 +89,8 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
         addNavigationViewPagerMapping(getResources().getString(R.string.findstocks), 3);
         addNavigationViewPagerMapping(getResources().getString(R.string.topmovers), 4);
         addNavigationViewPagerMapping(getResources().getString(R.string.myaccount), 5);
+        addNavigationViewPagerMapping(getResources().getString(R.string.cramerspicks), 6);
+        addNavigationViewPagerMapping(getResources().getString(R.string.insidertrades), 7);
 
         return new NavigationDrawerTopHandler(this)
                 .addSection(R.string.navigation)
@@ -97,6 +99,8 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
                 .addItem(getResources().getString(R.string.findstocks))
                 .addItem(getResources().getString(R.string.topmovers))
                 .addItem(getResources().getString(R.string.myaccount))
+                .addItem(getResources().getString(R.string.cramerspicks))
+                .addItem(getResources().getString(R.string.insidertrades))
 
                 .addSection(R.string.licenseandinfo)
                 .addItem(R.string.privacypolicy, R.mipmap.ic_github,
@@ -147,7 +151,11 @@ public class NavigationDrawerWithViewPagerTabsAccountsActivity
                 .addPage(R.string.topmovers,
                         MainFragment.newInstance(getResources().getString(R.string.topmovers)))
                 .addPage(R.string.myaccount,
-                        MainFragment.newInstance(getResources().getString(R.string.myaccount)));
+                        MainFragment.newInstance(getResources().getString(R.string.myaccount)))
+                .addPage(R.string.cramerspicks,
+                        MainFragment.newInstance(getResources().getString(R.string.cramerspicks)))
+                .addPage(R.string.insidertrades,
+                        MainFragment.newInstance(getResources().getString(R.string.insidertrades)));
     }
 
     @Override
