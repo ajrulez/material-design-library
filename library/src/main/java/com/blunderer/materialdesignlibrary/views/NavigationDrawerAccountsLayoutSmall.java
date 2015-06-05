@@ -88,6 +88,8 @@ public class NavigationDrawerAccountsLayoutSmall extends ANavigationDrawerAccoun
                         new NavigationDrawerAccountsListItemAccount(getContext());
                 moreAccount.setTitle(firstAccount.getTitle());
                 moreAccount.setIcon(firstAccount.getPicture());
+                moreAccount.setShowAccountPicture(firstAccount.getShowAccountPicture());
+                moreAccount.setAccountOptionClickListener(firstAccount.getAccountOptionClickListener());
                 moreAccount.setOnClickListener(generateAccountClickListener(
                         mAccountsPositions[1]));
 

@@ -100,6 +100,14 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
                     holder.icon.setVisibility(View.GONE);
                 }
             }
+
+            // Must clear the ListVIew item because otherwise when
+            // we scroll and some other item has an icon, it will show
+            // for items that do not have an icon.
+            // This is because Android recycles rows in a ListView
+            else {
+                holder.icon.setVisibility(View.GONE);
+            }
         } else if (item instanceof NavigationDrawerListItemTopIntent) {
             NavigationDrawerListItemTopIntent itemNormal =
                     (NavigationDrawerListItemTopIntent) item;
@@ -113,6 +121,14 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
                 } catch (Resources.NotFoundException e) {
                     holder.icon.setVisibility(View.GONE);
                 }
+            }
+
+            // Must clear the ListVIew item because otherwise when
+            // we scroll and some other item has an icon, it will show
+            // for items that do not have an icon.
+            // This is because Android recycles rows in a ListView
+            else {
+                holder.icon.setVisibility(View.GONE);
             }
         } else if (item instanceof NavigationDrawerListItemHeader) {
             holder.title.setVisibility(View.GONE);
@@ -132,6 +148,14 @@ public class NavigationDrawerAdapter extends ArrayAdapter<ListItem> {
                 } catch (Resources.NotFoundException e) {
                     holder.icon.setVisibility(View.GONE);
                 }
+            }
+
+            // Must clear the ListVIew item because otherwise when
+            // we scroll and some other item has an icon, it will show
+            // for items that do not have an icon.
+            // This is because Android recycles rows in a ListView
+            else {
+                holder.icon.setVisibility(View.GONE);
             }
         }
 

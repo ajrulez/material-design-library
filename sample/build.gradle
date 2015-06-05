@@ -40,5 +40,5 @@ task copyAllLibs << {
     }
 }
 
-build.dependsOn(copyToLib)
-build.dependsOn(copyAllLibs)
+//build.dependsOn(copyToLib)
+//build.dependsOn(copyAllLibs)
