@@ -3,6 +3,7 @@ package com.blunderer.materialdesignlibrary.handlers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.blunderer.materialdesignlibrary.listeners.OnAccountOptionClickListener;
 import com.blunderer.materialdesignlibrary.models.Account;
 
 import java.util.ArrayList;
@@ -18,6 +19,18 @@ public class NavigationDrawerAccountsHandler {
         mContext = context;
         mItems = new ArrayList<>();
         mUseSmallAccountsLayout = false;
+    }
+
+    public NavigationDrawerAccountsHandler addAccountOption(String title,
+                                                            String description,
+                                                            OnAccountOptionClickListener listener) {
+        Account item = new Account();
+        item.setTitle(title);
+        item.setDescription(description);
+        item.setShowAccountPicture(false);
+        item.setAccountOptionClickListener(listener);
+        mItems.add(item);
+        return this;
     }
 
     public NavigationDrawerAccountsHandler addAccount(String title,

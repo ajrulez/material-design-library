@@ -54,6 +54,8 @@ public class NavigationDrawerAccountsLayoutSmall extends ANavigationDrawerAccoun
                 moreAccount = new NavigationDrawerAccountsListItemAccount(getContext());
                 moreAccount.setTitle(account.getTitle());
                 moreAccount.setIcon(account.getPicture());
+                moreAccount.setShowAccountPicture(account.getShowAccountPicture());
+                moreAccount.setAccountOptionClickListener(account.getAccountOptionClickListener());
                 moreAccount.setOnClickListener(generateAccountClickListener(i));
                 mAccountsMenuItems.add(0, moreAccount);
             }
@@ -67,6 +69,13 @@ public class NavigationDrawerAccountsLayoutSmall extends ANavigationDrawerAccoun
 
             @Override
             public void onMoreAccountClick(View v, int i) {
+                // If this Item is an AccountOption Item
+                Account accountOption = getAccount(i);
+                if(accountOption.getAccountOptionClickListener() != null) {
+                    accountOption.getAccountOptionClickListener().onAccountOptionClicked(accountOption.getTitle());
+                    return;
+                }
+
                 Account firstAccount = getAccount(0);
                 int firstId = mAccountsPositions[0];
 

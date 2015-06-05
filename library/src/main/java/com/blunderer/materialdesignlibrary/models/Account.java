@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
+import com.blunderer.materialdesignlibrary.listeners.OnAccountOptionClickListener;
+
 public class Account {
 
     private String mTitle;
@@ -11,8 +13,9 @@ public class Account {
     private Drawable mPicture;
     private int mBackgroundResource;
     private Drawable mBackgroundDrawable;
-
+    private boolean mShowAccountPicture = true; // default is true
     private boolean mUseBackgroundDrawable;
+    private OnAccountOptionClickListener accountOptionClickListener = null;
 
     public String getTitle() {
         return mTitle;
@@ -64,6 +67,22 @@ public class Account {
 
     public boolean useBackgroundDrawable() {
         return mUseBackgroundDrawable;
+    }
+
+    public void setShowAccountPicture(boolean show) {
+        mShowAccountPicture = show;
+    }
+
+    public boolean getShowAccountPicture() {
+        return mShowAccountPicture;
+    }
+
+    public void setAccountOptionClickListener(OnAccountOptionClickListener listener) {
+        accountOptionClickListener = listener;
+    }
+
+    public OnAccountOptionClickListener getAccountOptionClickListener() {
+        return accountOptionClickListener;
     }
 
 }

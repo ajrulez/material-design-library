@@ -116,6 +116,8 @@ public class NavigationDrawerAccountsLayout extends ANavigationDrawerAccountsLay
                 moreAccount = new NavigationDrawerAccountsListItemAccount(getContext());
                 moreAccount.setTitle(account.getTitle());
                 moreAccount.setIcon(account.getPicture());
+                moreAccount.setShowAccountPicture(account.getShowAccountPicture());
+                moreAccount.setAccountOptionClickListener(account.getAccountOptionClickListener());
                 moreAccount.setOnClickListener(generateAccountClickListener(i));
                 mAccountsMenuItems.add(0, moreAccount);
             }
@@ -137,6 +139,8 @@ public class NavigationDrawerAccountsLayout extends ANavigationDrawerAccountsLay
                         new NavigationDrawerAccountsListItemAccount(getContext());
                 moreAccount.setTitle(account.getTitle());
                 moreAccount.setIcon(account.getPicture());
+                moreAccount.setShowAccountPicture(account.getShowAccountPicture());
+                moreAccount.setAccountOptionClickListener(account.getAccountOptionClickListener());
                 moreAccount.setOnClickListener(
                         generateAccountClickListener(mAccountsPositions[1]));
                 mAccountsMenuItems.remove(i - 1);

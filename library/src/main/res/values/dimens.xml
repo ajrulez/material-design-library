@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="mdl_navigation_drawer_width">240dp</dimen>
+    <dimen name="mdl_navigation_drawer_width">320dp</dimen>
 
     <!-- NavigationDrawer -->
     <dimen name="mdl_navigation_drawer_row_height">48dp</dimen>

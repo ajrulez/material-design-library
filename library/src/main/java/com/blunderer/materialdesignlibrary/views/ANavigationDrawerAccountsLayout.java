@@ -41,6 +41,7 @@ public abstract class ANavigationDrawerAccountsLayout extends LinearLayout {
     protected int mOriginalListViewSelectedItemPosition;
     protected boolean mIsAccountsMenuEnabled;
     protected boolean mShowAccountMenu = false;
+    private boolean mShowAccountPicture = true;
     protected OnAccountChangeListener mOnAccountChangeListener;
 
     public int[] mAccountsPositions;
@@ -167,6 +168,8 @@ public abstract class ANavigationDrawerAccountsLayout extends LinearLayout {
         } else mBackground.setImageResource(currentAccount.getBackgroundResource());
 
         mPicture.setImageDrawable(currentAccount.getPicture());
+
+        mShowAccountPicture = currentAccount.getShowAccountPicture();
 
         if (!TextUtils.isEmpty(currentAccount.getTitle())) {
             mTitle.setText(currentAccount.getTitle());

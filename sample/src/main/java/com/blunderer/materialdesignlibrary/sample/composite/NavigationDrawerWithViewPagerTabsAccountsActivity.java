@@ -2,6 +2,7 @@ package com.blunderer.materialdesignlibrary.sample.composite;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.blunderer.materialdesignlibrary.handlers.ActionBarDefaultHandler;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarHandler;
@@ -10,6 +11,7 @@ import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerAccountsMenu
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerBottomHandler;
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerTopHandler;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
+import com.blunderer.materialdesignlibrary.listeners.OnAccountOptionClickListener;
 import com.blunderer.materialdesignlibrary.models.Account;
 import com.blunderer.materialdesignlibrary.sample.MainFragment;
 import com.blunderer.materialdesignlibrary.sample.R;
@@ -21,18 +23,31 @@ import com.blunderer.materialdesignlibrary.sample.viewpagers.ViewPagerActivity;
 public class NavigationDrawerWithViewPagerTabsAccountsActivity
         extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerTabsActivity {
 
+    private OnAccountOptionClickListener accountOptionClickListener = new OnAccountOptionClickListener() {
+        @Override
+        public void onAccountOptionClicked(String optionText) {
+            Toast.makeText(NavigationDrawerWithViewPagerTabsAccountsActivity.this, optionText, Toast.LENGTH_SHORT).show();
+        }
+    };
+
     @Override
     public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
         return new NavigationDrawerAccountsHandler(this)
                 .enableSmallAccountsLayout() // Comment this if you want bigger Account area
                 .addAccount("Blunderer", "blundererandroid@gmail.com",
                         R.drawable.profile1, R.drawable.profile1_background)
-                .addAccount("Blunderer's cat", "cat@gmail.com",
-                        R.drawable.profile2, R.drawable.profile2_background)
-                .addAccount("Blunderer's dog", "dog@gmail.com",
-                        R.drawable.profile3, R.color.cyan)
-                .addAccount("Blunderer's monkey", "monkey@gmail.com",
-                        R.drawable.profile4, R.color.gray);
+                .addAccountOption("Export Portfolio",
+                        "Exports Portfolio to HTML File",
+                        accountOptionClickListener)
+                .addAccountOption("Export Watchlist",
+                        "Exports Watchlist to HTML File",
+                        accountOptionClickListener)
+                .addAccountOption("Reset Account",
+                        "Resets and clears user account",
+                        accountOptionClickListener)
+                .addAccountOption("Add \\ Remove Countries",
+                        "Allows user to add or remove countries",
+                        accountOptionClickListener);
     }
 
     @Override

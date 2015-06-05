@@ -99,8 +99,13 @@ public class NavigationDrawerAccountsMenuAdapter
             holder.titleHeader.setVisibility(View.GONE);
             if (itemAccount.useIconResource()) {
                 try {
-                    holder.icon.setImageDrawable(itemAccount.getIcon());
-                    holder.icon.setVisibility(View.VISIBLE);
+                    if(itemAccount.getShowAccountPicture() == false) {
+                        holder.icon.setVisibility(View.GONE);
+                    }
+                    else {
+                        holder.icon.setImageDrawable(itemAccount.getIcon());
+                        holder.icon.setVisibility(View.VISIBLE);
+                    }
                 } catch (Resources.NotFoundException e) {
                     holder.icon.setVisibility(View.GONE);
                 }
