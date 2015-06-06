@@ -1,11 +1,14 @@
 package com.blunderer.materialdesignlibrary.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -37,12 +40,42 @@ public abstract class NavigationDrawerWithViewPagerTabsActivity extends Navigati
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, overlayActionBar() ?
-                R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs_full
-                : R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs);
+        // Normal Mode - No overlays
+        int contentView = R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs_full;
+
+        // Check if this is Full Screen mode - i.e. We wan to overlay the status bar
+        //
+        // Note: Only applicable for Lollipop and only applicable if overlayActionBar
+        // is also true
+        if(overlayActionBar() && overlayStatusBar()) {
+            contentView = R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs_full_screen;
+        }
+
+        // If this is Full Height (but not Full Screen), i.e. We only want
+        // to overlayActionBar and not overlayStatusBar
+        else if(overlayActionBar()) {
+            contentView = R.layout.mdl_activity_navigation_drawer_with_view_pager_tabs_full;
+        }
+
+        super.onCreate(savedInstanceState, contentView);
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
+        }
+
+        // If this is a Full Height mode (i.e overlayActionbar is true) and
+        // user has also requested to make this Activity full screen, i.e.
+        // overlayStatusBar is also true (NOTE: Only applicable for Lollipop and higher)
+        if(overlayActionBar() && overlayStatusBar()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                try {
+                    Window window = getWindow();
+                    window.setStatusBarColor(Color.parseColor("#00000000"));
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         ViewPagerHandler handler = getViewPagerHandler();

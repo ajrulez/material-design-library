@@ -31,6 +31,8 @@
         <activity android:name=".composite.NavigationDrawerWithViewPagerFullHeightActivity"/>
         <activity android:name=".composite.NavigationDrawerWithViewPagerTabsFullHeightActivity"/>
         <activity android:name=".composite.NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity"/>
+        <activity android:name=".composite.NavigationDrawerWithViewPagerTabsFullScreenActivity"/>
+        <activity android:name=".composite.NavigationDrawerWithViewPagerTabsAccountsFullScreenActivity"/>
         <activity android:name=".composite.NavigationDrawerWithViewPagerAccountsFullHeightActivity"/>
         <activity android:name=".viewpagers.ViewPagerActivity"/>
         <activity android:name=".viewpagers.ViewPagerWithIndicatorActivity"/>

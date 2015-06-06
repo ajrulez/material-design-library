@@ -20,8 +20,8 @@ import com.blunderer.materialdesignlibrary.sample.R;
  */
 public class NavigationDrawerWithViewPagerAccountsActivity
         extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerWithViewPagerActivity {
-@Override
-public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
+    @Override
+    public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
         return new NavigationDrawerAccountsHandler(this)
                 .enableSmallAccountsLayout() // Comment this if you want bigger Account area
                 .addAccount("Blunderer", "blundererandroid@gmail.com",
@@ -32,33 +32,33 @@ public NavigationDrawerAccountsHandler getNavigationDrawerAccountsHandler() {
                         R.drawable.profile3, R.color.cyan)
                 .addAccount("Blunderer's monkey", "monkey@gmail.com",
                         R.drawable.profile4, R.color.gray);
-        }
+    }
 
-@Override
-public NavigationDrawerAccountsMenuHandler getNavigationDrawerAccountsMenuHandler() {
+    @Override
+    public NavigationDrawerAccountsMenuHandler getNavigationDrawerAccountsMenuHandler() {
         return new NavigationDrawerAccountsMenuHandler(this)
                 .addAddAccount(new View.OnClickListener() {
 
-                        @Override
-                        public void onClick(View v) {
-                        }
+                    @Override
+                    public void onClick(View v) {
+                    }
 
                 })
                 .addManageAccounts(new View.OnClickListener() {
 
-                        @Override
-                        public void onClick(View v) {
-                        }
+                    @Override
+                    public void onClick(View v) {
+                    }
 
                 });
-        }
+    }
 
-@Override
-public void onNavigationDrawerAccountChange(Account account) {
-        }
+    @Override
+    public void onNavigationDrawerAccountChange(Account account) {
+    }
 
-@Override
-public NavigationDrawerTopHandler getNavigationDrawerTopHandler() {
+    @Override
+    public NavigationDrawerTopHandler getNavigationDrawerTopHandler() {
         // Note: The order of adding Navigation items to ViewPagerHandler
         // should be the same as adding those to NavigationDrawer because we
         // use index of item that is clicked in NavigationDrawer to navigate
@@ -72,77 +72,82 @@ public NavigationDrawerTopHandler getNavigationDrawerTopHandler() {
         addNavigationViewPagerMapping(getResources().getString(R.string.myaccount), 5);
 
         return new NavigationDrawerTopHandler(this)
-        .addSection(R.string.navigation)
-        .addItem(getResources().getString(R.string.portfolio))
-        .addItem(getResources().getString(R.string.watchlist))
-        .addItem(getResources().getString(R.string.findstocks))
-        .addItem(getResources().getString(R.string.topmovers))
-        .addItem(getResources().getString(R.string.myaccount))
+                .addSection(R.string.navigation)
+                .addItem(getResources().getString(R.string.portfolio))
+                .addItem(getResources().getString(R.string.watchlist))
+                .addItem(getResources().getString(R.string.findstocks))
+                .addItem(getResources().getString(R.string.topmovers))
+                .addItem(getResources().getString(R.string.myaccount))
 
-        .addSection(R.string.activity)
-        .addItem(R.string.start_activity, R.mipmap.ic_github,
-        new Intent(getApplicationContext(), ViewPagerActivity.class));
-        }
+                .addSection(R.string.activity)
+                .addItem(R.string.start_activity, R.mipmap.ic_github,
+                        new Intent(getApplicationContext(), ViewPagerActivity.class));
+    }
 
-@Override
-public NavigationDrawerBottomHandler getNavigationDrawerBottomHandler() {
+    @Override
+    public NavigationDrawerBottomHandler getNavigationDrawerBottomHandler() {
         return new NavigationDrawerBottomHandler(this)
-        .addSettings(null)
-        .addHelpAndFeedback(null);
-        }
+                .addSettings(null)
+                .addHelpAndFeedback(null);
+    }
 
-@Override
-public boolean overlayActionBar() {
+    @Override
+    public boolean overlayActionBar() {
         return false;
-        }
+    }
 
-@Override
-public boolean replaceActionBarTitleByNavigationDrawerItemTitle() {
+    @Override
+    public boolean overlayStatusBar() {
+        return false;
+    }
+
+    @Override
+    public boolean replaceActionBarTitleByNavigationDrawerItemTitle() {
         return true;
-        }
+    }
 
-@Override
-public int defaultNavigationDrawerItemSelectedPosition() {
+    @Override
+    public int defaultNavigationDrawerItemSelectedPosition() {
         return 1;
-        }
+    }
 
-@Override
-public ViewPagerHandler getViewPagerHandler() {
+    @Override
+    public ViewPagerHandler getViewPagerHandler() {
         // Note: The order of adding Navigation items to ViewPagerHandler
         // should be the same as adding those to NavigationDrawer because we
         // use index of item that is clicked in NavigationDrawer to navigate
         // to corresponding View in ViewPager.
         return new ViewPagerHandler(this)
-        .addPage(R.string.portfolio,
-        MainFragment.newInstance(getResources().getString(R.string.portfolio)))
-        .addPage(R.string.watchlist,
-        MainFragment.newInstance(getResources().getString(R.string.watchlist)))
-        .addPage(R.string.findstocks,
-        MainFragment.newInstance(getResources().getString(R.string.findstocks)))
-        .addPage(R.string.topmovers,
-        MainFragment.newInstance(getResources().getString(R.string.topmovers)))
-        .addPage(R.string.myaccount,
-        MainFragment.newInstance(getResources().getString(R.string.myaccount)));
-        }
+                .addPage(R.string.portfolio,
+                        MainFragment.newInstance(getResources().getString(R.string.portfolio)))
+                .addPage(R.string.watchlist,
+                        MainFragment.newInstance(getResources().getString(R.string.watchlist)))
+                .addPage(R.string.findstocks,
+                        MainFragment.newInstance(getResources().getString(R.string.findstocks)))
+                .addPage(R.string.topmovers,
+                        MainFragment.newInstance(getResources().getString(R.string.topmovers)))
+                .addPage(R.string.myaccount,
+                        MainFragment.newInstance(getResources().getString(R.string.myaccount)));
+    }
 
-@Override
-public int defaultViewPagerPageSelectedPosition() {
+    @Override
+    public int defaultViewPagerPageSelectedPosition() {
         return 0;
-        }
+    }
 
-@Override
-public boolean showViewPagerIndicator() {
+    @Override
+    public boolean showViewPagerIndicator() {
         return false;
-        }
+    }
 
-@Override
-public boolean replaceActionBarTitleByViewPagerPageTitle() {
+    @Override
+    public boolean replaceActionBarTitleByViewPagerPageTitle() {
         return true;
-        }
+    }
 
-@Override
-protected ActionBarHandler getActionBarHandler() {
+    @Override
+    protected ActionBarHandler getActionBarHandler() {
         return new ActionBarDefaultHandler(this);
-        }
+    }
 
-        }
+}

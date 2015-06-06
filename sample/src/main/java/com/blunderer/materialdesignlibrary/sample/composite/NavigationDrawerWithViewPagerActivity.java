@@ -69,6 +69,11 @@ public class NavigationDrawerWithViewPagerActivity
     }
 
     @Override
+    public boolean overlayStatusBar() {
+        return false;
+    }
+
+    @Override
     public boolean replaceActionBarTitleByNavigationDrawerItemTitle() {
         return true;
     }

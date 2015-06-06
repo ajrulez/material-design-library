@@ -1,10 +1,14 @@
 package com.blunderer.materialdesignlibrary.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -76,6 +80,21 @@ public abstract class NavigationDrawerWithViewPagerActivity extends NavigationDr
 
         if (savedInstanceState != null) {
             mAccountsPositions = savedInstanceState.getIntArray("cc");
+        }
+
+        // If this is a Full Height mode (i.e overlayActionbar is true) and
+        // user has also requested to make this Activity full screen, i.e.
+        // overlayStatusBar is also true (NOTE: Only applicable for Lollipop and higher)
+        if(overlayActionBar() && overlayStatusBar()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                try {
+                    Window window = getWindow();
+                    window.setStatusBarColor(Color.parseColor("#00000000"));
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         ViewPagerHandler handler = getViewPagerHandler();

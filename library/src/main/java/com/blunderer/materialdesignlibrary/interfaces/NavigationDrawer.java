@@ -33,6 +33,8 @@ public interface NavigationDrawer {
 
     boolean overlayActionBar();
 
+    boolean overlayStatusBar(); // Only applicable to Full Height mode (i.e. overlayActionBar must be true)
+
     boolean replaceActionBarTitleByNavigationDrawerItemTitle();
 
     int defaultNavigationDrawerItemSelectedPosition();

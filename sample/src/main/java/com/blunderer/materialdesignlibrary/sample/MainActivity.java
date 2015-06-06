@@ -18,7 +18,9 @@ import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWith
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsFullScreenActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsFullHeightActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsFullScreenActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewWithCustomLayoutActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewWithRefreshActivity;
@@ -154,15 +156,24 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         MainActivityFeature compositeViewFeature6 = new MainActivityFeature();
         compositeViewFeature6.setActivity(NavigationDrawerWithViewPagerTabsFullHeightActivity.class);
         compositeViewFeature6.setTitle("Navigation Drawer With View Pager With Tabs Full Height");
-        compositeViewFeature6.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs Full height");
+        compositeViewFeature6.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs Full Height");
         MainActivityFeature compositeViewFeature7 = new MainActivityFeature();
         compositeViewFeature7.setActivity(NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity.class);
         compositeViewFeature7.setTitle("Navigation Drawer With View Pager With Tabs And Account Full Height");
-        compositeViewFeature7.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs and Account Full height");
+        compositeViewFeature7.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs and Account Full Height");
         MainActivityFeature compositeViewFeature8 = new MainActivityFeature();
         compositeViewFeature8.setActivity(NavigationDrawerWithViewPagerAccountsFullHeightActivity.class);
         compositeViewFeature8.setTitle("Navigation Drawer With View Pager With Account Full Height");
-        compositeViewFeature8.setDescription("A Combination of NavigationDrawer and ViewPager with Account Full height");
+        compositeViewFeature8.setDescription("A Combination of NavigationDrawer and ViewPager with Account Full Height");
+        MainActivityFeature compositeViewFeature9 = new MainActivityFeature();
+        compositeViewFeature9.setActivity(NavigationDrawerWithViewPagerTabsAccountsFullScreenActivity.class);
+        compositeViewFeature9.setTitle("Navigation Drawer With View Pager With Account Full Screen");
+        compositeViewFeature9.setDescription("A Combination of NavigationDrawer and ViewPager with Account Full Screen");
+        MainActivityFeature compositeViewFeature10 = new MainActivityFeature();
+        compositeViewFeature10.setActivity(NavigationDrawerWithViewPagerTabsFullScreenActivity.class);
+        compositeViewFeature10.setTitle("Navigation Drawer With View Pager With Tabs Full Screen");
+        compositeViewFeature10.setDescription("A Combination of NavigationDrawer and ViewPager with Tabs Full Screen");
+
         MainActivityFeature listViewHeader = new MainActivityFeature();
         listViewHeader.setHeader(true);
         listViewHeader.setTitle("ListView");
@@ -262,6 +273,8 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         objects.add(compositeViewFeature6);
         objects.add(compositeViewFeature7);
         objects.add(compositeViewFeature8);
+        objects.add(compositeViewFeature9);
+        objects.add(compositeViewFeature10);
         objects.add(listViewHeader);
         objects.add(listViewFeature1);
         objects.add(listViewFeature2);
