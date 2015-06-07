@@ -19,6 +19,8 @@ public abstract class Activity extends AActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.view_stub);
         stub.setLayoutResource(getContentView());
         mView = stub.inflate();
+
+        onCreateComplete();
     }
 
     @Override
@@ -35,5 +37,10 @@ public abstract class Activity extends AActivity {
     }
 
     protected abstract int getContentView();
+
+    // Method that is called when onCreate is completed
+    protected void onCreateComplete() {
+        // Nothing to do
+    }
 
 }
