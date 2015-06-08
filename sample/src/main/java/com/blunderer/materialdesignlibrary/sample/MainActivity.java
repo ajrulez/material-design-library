@@ -15,10 +15,12 @@ import com.blunderer.materialdesignlibrary.sample.cardviews.CardViewWithLeftImag
 import com.blunderer.materialdesignlibrary.sample.cardviews.CardViewWithTopImageActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerAccountsActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerAccountsFullHeightActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsAccountsFullScreenActivity;
+import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsFullScreenActivity;
 import com.blunderer.materialdesignlibrary.sample.listviews.ListViewActivity;
@@ -28,8 +30,6 @@ import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDr
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithAccountsActivity;
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithAccountsAndFullHeightActivity;
 import com.blunderer.materialdesignlibrary.sample.navigationdrawers.NavigationDrawerWithFullHeightActivity;
-import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerActivity;
-import com.blunderer.materialdesignlibrary.sample.composite.NavigationDrawerWithViewPagerTabsActivity;
 import com.blunderer.materialdesignlibrary.sample.scrollviews.ScrollViewActivity;
 import com.blunderer.materialdesignlibrary.sample.scrollviews.ScrollViewWithRefreshActivity;
 import com.blunderer.materialdesignlibrary.sample.searchbar.SearchBarActivity;
@@ -43,6 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends com.blunderer.materialdesignlibrary.activities.ListViewActivity {
+
+    private Menu appMenu;
 
     @Override
     public ListAdapter getListAdapter() {
@@ -88,6 +90,7 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        appMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -290,4 +293,14 @@ public class MainActivity extends com.blunderer.materialdesignlibrary.activities
         return objects;
     }
 
+    // Trick to Hide or Show the Menu in Action Bar
+    // As needed
+    private void showMenu(boolean show, int menuitemId) {
+        if (appMenu != null) {
+            MenuItem item = appMenu.findItem(R.id.github);
+            if (item != null) {
+                item.setVisible(show);
+            }
+        }
+    }
 }
